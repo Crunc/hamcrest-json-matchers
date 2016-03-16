@@ -4,7 +4,6 @@ import com.google.gson.JsonPrimitive;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.core.IsNull;
-import org.hamcrest.number.OrderingComparison;
 
 import javax.annotation.Nullable;
 import java.math.BigDecimal;
@@ -21,7 +20,7 @@ public class IsJsonPrimitiveNumber extends BaseJsonPrimitiveMatcher {
 
     @SuppressWarnings("unchecked")
     public IsJsonPrimitiveNumber(@Nullable Matcher<? super BigDecimal> matcher) {
-        this.matcher = (Matcher<? super BigDecimal>) (matcher != null ? matcher : IsNull.nullValue());
+        this.matcher = matcher != null ? matcher : IsNull.nullValue();
     }
 
     @Override

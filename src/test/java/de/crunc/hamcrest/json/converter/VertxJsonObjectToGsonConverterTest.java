@@ -2,7 +2,6 @@ package de.crunc.hamcrest.json.converter;
 
 
 import com.google.gson.JsonElement;
-import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
 import de.crunc.hamcrest.json.JsonArrayBuilder;
 import de.crunc.hamcrest.json.JsonObjectBuilder;
@@ -31,18 +30,18 @@ public class VertxJsonObjectToGsonConverterTest {
 
     @Test
     public void shouldConvertEmptyObject() {
-        org.vertx.java.core.json.JsonObject vertxObject = VertxJsonObjectBuilder.object()
+        io.vertx.core.json.JsonObject vertxObject = VertxJsonObjectBuilder.object()
                 .build();
 
         JsonElement result = converter.toJsonElement(vertxObject);
 
         assertThat(result, instanceOf(JsonObject.class));
-        assertThat(((JsonObject) result), equalTo(new JsonObject()));
+        assertThat(result, equalTo(new JsonObject()));
     }
 
     @Test
     public void shouldConvertObject() {
-        org.vertx.java.core.json.JsonObject vertxObject = VertxJsonObjectBuilder.object()
+        io.vertx.core.json.JsonObject vertxObject = VertxJsonObjectBuilder.object()
                 .put("booleanTrue", true)
                 .put("booleanFalse", false)
                 .put("positiveInteger", 42)
@@ -66,7 +65,7 @@ public class VertxJsonObjectToGsonConverterTest {
         JsonElement result = converter.toJsonElement(vertxObject);
 
         assertThat(result, instanceOf(JsonObject.class));
-        assertThat(((JsonObject) result), equalTo(JsonObjectBuilder.object()
+        assertThat(result, equalTo(JsonObjectBuilder.object()
                 .put("booleanTrue", true)
                 .put("booleanFalse", false)
                 .put("positiveInteger", 42)

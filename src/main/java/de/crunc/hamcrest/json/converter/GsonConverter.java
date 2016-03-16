@@ -21,17 +21,33 @@ public enum GsonConverter {
 
     private final Map<Class<?>, ToGsonConverter<?>> converters;
 
-    private GsonConverter() {
-        converters = new HashMap<Class<?>, ToGsonConverter<?>>();
+    GsonConverter() {
+        converters = new HashMap<>();
 
         add(new StringToGsonConverter());
 
         add(new VertxJsonObjectToGsonConverter());
         add(new VertxJsonArrayToGsonConverter());
-
         add(new JSONObjectToGsonConverter());
         add(new JSONArrayToGsonConverter());
     }
+
+    /**
+     * Instantiates and adds the given converter to the list of converters if the given target class is on the classpath.
+     *
+     * @param targetClassName The qualified name of the class that must be on the classpath in orer for the converter to be added, must not be {@code null}.
+     * @param converterClassName The qualified name of the converter which will be added, must not be {@code null}.
+     * @since 0.2
+     */
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    private void add(String targetClassName, String converterClassName) {
+        try {
+            Class.forName(targetClassName, false, this.getClass().getClassLoader());
+            add((ToGsonConverter) Class.forName(converterClassName).newInstance());
+        } catch (Exception e) {
+        }
+    }
+    
 
     /**
      * Adds the given converter to the list of converters.

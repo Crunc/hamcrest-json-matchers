@@ -4,8 +4,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import de.crunc.hamcrest.json.JsonArrayBuilder;
 import de.crunc.hamcrest.json.JsonObjectBuilder;
-import de.crunc.hamcrest.json.VertxJsonArrayBuilder;
-import de.crunc.hamcrest.json.VertxJsonObjectBuilder;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.Before;
@@ -36,7 +34,7 @@ public class JSONArrayToGsonConverterTest {
         JsonElement result = converter.toJsonElement(jsonArray);
 
         assertThat(result, instanceOf(JsonArray.class));
-        assertThat(((JsonArray) result), equalTo(new JsonArray()));
+        assertThat(result, equalTo(new JsonArray()));
     }
 
     @Test
@@ -65,7 +63,7 @@ public class JSONArrayToGsonConverterTest {
         JsonElement result = converter.toJsonElement(jsonArray);
 
         assertThat(result, instanceOf(JsonArray.class));
-        assertThat(((JsonArray) result), equalTo(JsonArrayBuilder.array()
+        assertThat(result, equalTo(JsonArrayBuilder.array()
                 .add(true)
                 .add(false)
                 .add(42)

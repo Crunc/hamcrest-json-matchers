@@ -2,7 +2,6 @@ package de.crunc.hamcrest.json.converter;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonNull;
 import de.crunc.hamcrest.json.JsonArrayBuilder;
 import de.crunc.hamcrest.json.JsonObjectBuilder;
 import de.crunc.hamcrest.json.VertxJsonArrayBuilder;
@@ -30,18 +29,18 @@ public class VertxJsonArrayToGsonConverterTest {
 
     @Test
     public void shouldConvertEmptyArray() {
-        org.vertx.java.core.json.JsonArray vertxArray = VertxJsonArrayBuilder.array()
+        io.vertx.core.json.JsonArray vertxArray = VertxJsonArrayBuilder.array()
                 .build();
 
         JsonElement result = converter.toJsonElement(vertxArray);
 
         assertThat(result, instanceOf(JsonArray.class));
-        assertThat(((JsonArray) result), equalTo(new JsonArray()));
+        assertThat(result, equalTo(new JsonArray()));
     }
 
     @Test
     public void shouldConvertArray() {
-        org.vertx.java.core.json.JsonArray vertxArray = VertxJsonArrayBuilder.array()
+        io.vertx.core.json.JsonArray vertxArray = VertxJsonArrayBuilder.array()
                 .add(true)
                 .add(false)
                 .add(42)
@@ -65,7 +64,7 @@ public class VertxJsonArrayToGsonConverterTest {
         JsonElement result = converter.toJsonElement(vertxArray);
 
         assertThat(result, instanceOf(JsonArray.class));
-        assertThat(((JsonArray) result), equalTo(JsonArrayBuilder.array()
+        assertThat(result, equalTo(JsonArrayBuilder.array()
                 .add(true)
                 .add(false)
                 .add(42)

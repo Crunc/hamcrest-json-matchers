@@ -19,15 +19,15 @@ public class IsJsonBoolean extends BaseJsonBooleanMatcher {
 
     public IsJsonBoolean(@Nullable Boolean expected) {
         if (expected != null) {
-            this.matcher = new IsEqual<Boolean>(expected);
+            this.matcher = new IsEqual<>(expected);
         } else {
-            this.matcher = new IsNull<Boolean>();
+            this.matcher = new IsNull<>();
         }
     }
 
     @SuppressWarnings("unchecked")
     public IsJsonBoolean(@Nullable Matcher<? super Boolean> matcher) {
-        this.matcher = (Matcher<? super Boolean>)(matcher != null ? matcher : new IsNull<Boolean>());
+        this.matcher = matcher != null ? matcher : new IsNull<Boolean>();
     }
 
     @Override
