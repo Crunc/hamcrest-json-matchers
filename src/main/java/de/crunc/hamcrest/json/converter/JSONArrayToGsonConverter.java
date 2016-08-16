@@ -4,10 +4,9 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonNull;
 import com.google.gson.JsonPrimitive;
-import org.json.JSONArray;
 
 /**
- * Converts {@link JSONArray} to {@link JsonElement}.
+ * Converts {@link org.json.JSONArray} to {@link JsonElement}.
  *
  * @author Hauke Jaeger, hauke.jaeger@googlemail.com
  * @since 0.2

@@ -4,10 +4,9 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
-import org.json.JSONObject;
 
 /**
- * Converts {@link JSONObject} to {@link JsonElement}.
+ * Converts {@link org.json.JSONObject} to {@link JsonElement}.
  *
  * @author Hauke Jaeger, hauke.jaeger@googlemail.com
  * @since 0.2
